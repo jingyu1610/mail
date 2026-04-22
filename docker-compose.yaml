@@ -1,0 +1,14 @@
+services:
+  jingyu-mail-sender:
+    build: .
+    container_name: jingyu-mail-sender
+    hostname: mail.jingyu.localdomain
+    restart: always
+    ports:
+      - "25:25"
+      - "465:465"
+      - "587:587"
+    volumes:
+      - ./postfix/postfix_config:/etc/postfix
+      - ./postfix/maillogs:/var/log/mail
+      - ./postfix/mail_spool:/var/spool/postfix
